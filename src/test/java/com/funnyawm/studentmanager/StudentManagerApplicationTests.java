@@ -57,6 +57,6 @@ class StudentManagerApplicationTests {
     @Test
         //单元测试：测试删除学生功能
     void testDeleteStudent() {
-        studentService.deleteStudentById(95003);
+        studentService.deleteStudentById(95006);
     }
 }
