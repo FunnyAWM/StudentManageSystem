@@ -5,6 +5,8 @@ import com.funnyawm.studentmanager.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class StudentService implements StudentMapper{
     StudentMapper studentMapper;
@@ -32,5 +34,10 @@ public class StudentService implements StudentMapper{
     @Override
     public void updateStudent(Student student) {
         studentMapper.updateStudent(student);
+    }
+
+    @Override
+    public List<Student> getAllStudents() {
+        return studentMapper.getAllStudents();
     }
 }

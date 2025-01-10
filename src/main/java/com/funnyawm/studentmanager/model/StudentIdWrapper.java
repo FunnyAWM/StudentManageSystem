@@ -8,11 +8,5 @@ import lombok.Setter;
 @Setter
 @Data
 public class StudentIdWrapper {
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     Integer id;
-
 }

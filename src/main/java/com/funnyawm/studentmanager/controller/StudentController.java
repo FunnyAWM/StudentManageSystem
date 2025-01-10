@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class StudentController {
     StudentService studentService;
@@ -40,5 +42,10 @@ public class StudentController {
     @PostMapping("/addStudent")
     public void addStudent(@RequestBody Student student) {
         studentService.insertStudent(student);
+    }
+
+    @PostMapping("/allStudents")
+    public List<Student> getAllStudents() {
+        return studentService.getAllStudents();
     }
 }
