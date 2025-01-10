@@ -14,14 +14,14 @@ import java.util.List;
 public class StudentController {
     StudentService studentService;
 
-    @GetMapping(value = {"/getStudent", "/updateStudent", "/deleteStudent", "/addStudent"})
-    public ResponseEntity<String> returnMethodNotAllowed() {
-        return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body("Get method not allowed");
-    }
-
     @Autowired
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
+    }
+
+    @GetMapping(value = {"/getStudent", "/updateStudent", "/deleteStudent", "/addStudent"})
+    public ResponseEntity<String> returnMethodNotAllowed() {
+        return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body("Get method not allowed");
     }
 
     @PostMapping("/getStudent")

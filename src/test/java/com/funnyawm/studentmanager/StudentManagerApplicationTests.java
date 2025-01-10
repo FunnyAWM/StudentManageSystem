@@ -83,7 +83,14 @@ class StudentManagerApplicationTests {
         student.setAddress("山西省临汾市");
         student.setPhone(null);
         student.setMajor("软件工程");
-        if (student.checkEmpty()) {
+        Student student2 = new Student();
+        student.setId(95007);
+        student.setName("test");
+        student.setGender("男");
+        student.setAddress("山西省临汾市");
+        student.setPhone("");
+        student.setMajor("软件工程");
+        if (student.checkEmpty() || student2.checkEmpty()) {
             throw new Error("Test failed!");
         }
     }

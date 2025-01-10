@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class StudentService implements StudentMapper{
+public class StudentService implements StudentMapper {
     StudentMapper studentMapper;
 
     @Autowired
@@ -22,9 +22,7 @@ public class StudentService implements StudentMapper{
     }
 
     @Override
-    public void insertStudent(Student student) {
-        studentMapper.insertStudent(student);
-    }
+    public void insertStudent(Student student) {studentMapper.insertStudent(student);}
 
     @Override
     public void deleteStudentById(int id) {
