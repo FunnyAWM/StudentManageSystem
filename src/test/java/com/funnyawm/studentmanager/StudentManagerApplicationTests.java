@@ -61,6 +61,7 @@ class StudentManagerApplicationTests {
     }
 
     @Test
+        //单元测试：测试检查注入功能
     void testCheckStudent() {
         Student student = new Student();
         student.setId(95006);
@@ -75,6 +76,7 @@ class StudentManagerApplicationTests {
     }
 
     @Test
+        //单元测试：测试检查空字段功能
     void testEmptyDetection() {
         Student student = new Student();
         student.setId(95006);
