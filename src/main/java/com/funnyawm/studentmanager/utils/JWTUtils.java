@@ -6,6 +6,8 @@ import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.funnyawm.studentmanager.model.Admin;
 import com.funnyawm.studentmanager.model.Keys;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Date;
@@ -13,6 +15,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class JWTUtils {
+    private static final Logger log = LogManager.getLogger(JWTUtils.class);
+
     public static String genToken(@NotNull Admin admin) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("id", admin.getId());
@@ -33,7 +37,7 @@ public class JWTUtils {
             String name = claimsMap.get("name").toString();
             String password = claimsMap.get("password").toString();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e);
             return false;
         }
         return true;

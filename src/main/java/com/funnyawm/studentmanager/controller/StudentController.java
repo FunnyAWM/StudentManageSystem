@@ -30,8 +30,15 @@ public class StudentController {
     }
 
     @PostMapping("/updateStudent")
-    public void updateStudent(@RequestBody Student student) {
+    public ResponseEntity<String> updateStudent(@RequestBody Student student) {
+        if (!student.checkEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Empty Field detected!");
+        }
+        if (!student.checkInjection()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("SQL injection was not allowed!");
+        }
         studentService.updateStudent(student);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @PostMapping("/deleteStudent")
@@ -40,8 +47,15 @@ public class StudentController {
     }
 
     @PostMapping("/addStudent")
-    public void addStudent(@RequestBody Student student) {
+    public ResponseEntity<String> addStudent(@RequestBody Student student) {
+        if (!student.checkEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Empty Field detected!");
+        }
+        if (!student.checkInjection()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("SQL injection was not allowed!");
+        }
         studentService.insertStudent(student);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @PostMapping("/allStudents")

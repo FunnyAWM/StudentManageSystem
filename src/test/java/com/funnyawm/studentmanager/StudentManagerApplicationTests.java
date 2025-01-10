@@ -57,6 +57,34 @@ class StudentManagerApplicationTests {
     @Test
         //单元测试：测试删除学生功能
     void testDeleteStudent() {
-        studentService.deleteStudentById(95006);
+        studentService.deleteStudentById(95004);
+    }
+
+    @Test
+    void testCheckStudent() {
+        Student student = new Student();
+        student.setId(95006);
+        student.setName("test");
+        student.setGender("男");
+        student.setAddress("山西省临汾市");
+        student.setPhone("123456789");
+        student.setMajor("=");
+        if (student.checkInjection()) {
+            throw new Error("Test failed!");
+        }
+    }
+
+    @Test
+    void testEmptyDetection() {
+        Student student = new Student();
+        student.setId(95006);
+        student.setName("test");
+        student.setGender("男");
+        student.setAddress("山西省临汾市");
+        student.setPhone(null);
+        student.setMajor("软件工程");
+        if (student.checkEmpty()) {
+            throw new Error("Test failed!");
+        }
     }
 }

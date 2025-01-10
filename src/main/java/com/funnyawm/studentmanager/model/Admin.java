@@ -2,12 +2,12 @@ package com.funnyawm.studentmanager.model;
 
 import lombok.*;
 
-@Getter
-@Setter
+import java.io.Serializable;
+
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-public class Admin {
+public class Admin implements Serializable {
     public int id;
     public String name;
     public String password;
