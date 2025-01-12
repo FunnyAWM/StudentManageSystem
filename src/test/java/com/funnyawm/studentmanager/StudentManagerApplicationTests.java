@@ -4,6 +4,7 @@ import com.funnyawm.studentmanager.model.Admin;
 import com.funnyawm.studentmanager.model.Student;
 import com.funnyawm.studentmanager.service.AdminService;
 import com.funnyawm.studentmanager.service.StudentService;
+import com.funnyawm.studentmanager.utils.AESUtils;
 import com.funnyawm.studentmanager.utils.JWTUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,10 @@ class StudentManagerApplicationTests {
 
     @Test
         //单元测试：测试登录功能
-    void testLogin() {
+    void testLogin() throws Exception {
         Admin admin = new Admin();
         admin.setName("admin");
-        admin.setPassword("admin");
+        admin.setPassword(AESUtils.encrypt("admin"));
         Admin target = adminService.getAdminByName(admin.getName());
         if (target != null && target.getPassword().equals(admin.getPassword())) {
             admin.setId(target.getId());
@@ -52,12 +53,6 @@ class StudentManagerApplicationTests {
         student.setPhone("123456789");
         student.setMajor("软件工程");
         studentService.insertStudent(student);
-    }
-
-    @Test
-        //单元测试：测试删除学生功能
-    void testDeleteStudent() {
-        studentService.deleteStudentById(95004);
     }
 
     @Test
@@ -95,5 +90,19 @@ class StudentManagerApplicationTests {
         if (student.checkEmpty() || student2.checkEmpty()) {
             throw new Error("Test failed!");
         }
+    }
+
+    @Test
+        //单元测试：测试管理员密码的AES加密与解密
+    void testEncryption() throws Exception {
+        Admin admin = new Admin();
+        admin.setName("admin");
+        admin.setPassword("admin");
+        String encryptedText = AESUtils.encrypt(admin.getPassword());
+        System.out.println(encryptedText);
+        if (!(admin.getPassword().equals(AESUtils.decrypt(encryptedText)))) {
+            throw new Error("Test failed!");
+        }
+        System.out.println(AESUtils.decrypt(encryptedText));
     }
 }

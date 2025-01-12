@@ -10,6 +10,9 @@ public interface StudentMapper {
     @Select("SELECT * FROM student WHERE id = ${id}")
     Student getStudentById(int id);
 
+    @Select("SELECT * FROM student WHERE name = '${name}'")
+    List<Student> getStudentByName(String name);
+
     @Insert("INSERT INTO student(name, gender, address, phone, major) VALUES ('${name}', '${gender}', '${address}', '${phone}', '${major}')")
     void insertStudent(Student student);
 

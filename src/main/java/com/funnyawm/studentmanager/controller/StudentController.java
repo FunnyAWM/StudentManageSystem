@@ -2,6 +2,7 @@ package com.funnyawm.studentmanager.controller;
 
 import com.funnyawm.studentmanager.model.Student;
 import com.funnyawm.studentmanager.model.StudentIdWrapper;
+import com.funnyawm.studentmanager.model.StudentNameWrapper;
 import com.funnyawm.studentmanager.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,7 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @GetMapping(value = {"/getStudent", "/updateStudent", "/deleteStudent", "/addStudent"})
+    @GetMapping(value = {"/getStudent", "/updateStudent", "/deleteStudent", "/addStudent", "/allStudent"})
     public ResponseEntity<String> returnMethodNotAllowed() {
         return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body("Get method not allowed");
     }
@@ -27,6 +28,11 @@ public class StudentController {
     @PostMapping("/getStudent")
     public Student getStudentById(@RequestBody StudentIdWrapper studentIdWrapper) {
         return studentService.getStudentById(studentIdWrapper.getId());
+    }
+
+    @PostMapping("/getStudentByName")
+    public List<Student> getStudentByName(@RequestBody StudentNameWrapper name) {
+        return studentService.getStudentByName(name.getStudentName());
     }
 
     @PostMapping("/updateStudent")

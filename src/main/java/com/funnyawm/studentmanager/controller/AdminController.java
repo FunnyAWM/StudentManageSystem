@@ -3,6 +3,7 @@ package com.funnyawm.studentmanager.controller;
 import com.funnyawm.studentmanager.model.Admin;
 import com.funnyawm.studentmanager.model.TokenWrapper;
 import com.funnyawm.studentmanager.service.AdminService;
+import com.funnyawm.studentmanager.utils.AESUtils;
 import com.funnyawm.studentmanager.utils.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,12 +22,15 @@ public class AdminController {
     }
 
     @PostMapping("/admin/register")
-    public void register(@RequestBody Admin admin) {
+    public ResponseEntity<String> register(@RequestBody Admin admin) throws Exception {
+        admin.setPassword(AESUtils.encrypt(admin.getPassword()));
         adminService.addAdmin(admin);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping("/admin/login")
-    public ResponseEntity<String> login(@RequestBody Admin admin) {
+    public ResponseEntity<String> login(@RequestBody Admin admin) throws Exception {
+        admin.setPassword(AESUtils.encrypt(admin.getPassword()));
         Admin target = adminService.getAdmin(admin);
         if (target != null) {
             admin.setToken(JWTUtils.genToken(admin));
