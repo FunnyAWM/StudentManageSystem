@@ -1,7 +1,6 @@
 package com.funnyawm.studentmanager.mapper;
 
 import com.funnyawm.studentmanager.model.Admin;
-import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -17,6 +16,8 @@ public interface AdminMapper {
     @Insert("INSERT INTO admin(username, password) VALUES ('${name}', '${password}')")
     void addAdmin(Admin admin);
 
-    @Delete("DELETE FROM admin WHERE id = ${id}")
-    void deleteAdminById(int id);
+// --注释掉检查 START (2025/1/13 19:19):
+//    @Delete("DELETE FROM admin WHERE id = ${id}")
+//    void deleteAdminById(int id);
+// --注释掉检查 STOP (2025/1/13 19:19)
 }

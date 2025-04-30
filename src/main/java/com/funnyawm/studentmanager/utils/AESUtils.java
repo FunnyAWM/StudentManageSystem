@@ -1,11 +1,9 @@
 package com.funnyawm.studentmanager.utils;
 
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
-import java.security.Key;
 import java.util.Base64;
 
 public class AESUtils {
@@ -33,9 +31,11 @@ public class AESUtils {
         return new SecretKeySpec(keyValue, ALGORITHM);
     }
 
-    ///Use this to update key if necessary
-    @Contract("_ -> new")
-    private static @NotNull Key generateKey(String key) {
-        return new SecretKeySpec(key.getBytes(), ALGORITHM);
-    }
+// --注释掉检查 START (2025/1/13 19:20):
+//    ///Use this to update key if necessary
+//    @Contract("_ -> new")
+//    private static @NotNull Key generateKey(String key) {
+//        return new SecretKeySpec(key.getBytes(), ALGORITHM);
+//    }
+// --注释掉检查 STOP (2025/1/13 19:20)
 }

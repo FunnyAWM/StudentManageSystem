@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AdminService implements AdminMapper {
-    AdminMapper adminMapper;
+    final AdminMapper adminMapper;
 
     @Autowired
     public AdminService(AdminMapper adminMapper) {
@@ -30,10 +30,12 @@ public class AdminService implements AdminMapper {
         adminMapper.addAdmin(admin);
     }
 
-    @Override
-    public void deleteAdminById(int id) {
-        adminMapper.deleteAdminById(id);
-    }
+// --注释掉检查 START (2025/1/13 19:20):
+//    @Override
+//    public void deleteAdminById(int id) {
+//        adminMapper.deleteAdminById(id);
+//    }
+// --注释掉检查 STOP (2025/1/13 19:20)
 
     public boolean verifyAdmin(String token) {
         return JWTUtils.verifyToken(token);

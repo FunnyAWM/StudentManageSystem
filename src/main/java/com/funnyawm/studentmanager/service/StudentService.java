@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 public class StudentService implements StudentMapper {
-    StudentMapper studentMapper;
+    final StudentMapper studentMapper;
 
     @Autowired
     public StudentService(StudentMapper studentMapper) {

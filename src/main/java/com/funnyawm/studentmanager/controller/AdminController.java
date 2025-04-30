@@ -41,7 +41,7 @@ public class AdminController {
 
     @PostMapping("/token/verify")
     public ResponseEntity<String> verifyToken(@RequestBody TokenWrapper token) {
-        if (JWTUtils.verifyToken(token.getToken())) {
+        if (adminService.verifyAdmin(token.getToken())) {
             return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.FORBIDDEN);
